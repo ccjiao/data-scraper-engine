@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-06-15
+
+### Added
+- ✅ GitHub Actions CI pipeline (Python 3.10-3.13 matrix, lint, test, build verify)
+- ✅ Unit tests for URL router (7 test cases) and config loader (3 test cases)
+- ✅ Issue templates (bug report, feature request) and PR template
+- ✅ CI status badge in README
+- 📦 `datapilot-pro` package v1.0.0 released
+  - Sentiment analysis (94% accuracy, keyword + negation + intensity + emoji)
+  - User profiling (4-dimension scoring, 5 user types, water army detection)
+  - REST API server (Flask, sync/async modes, AI tool integration)
+  - douyinLive Go service management (install/start/stop/restart/status)
+- 📖 Pro features integration — `--analyze`, `serve`, `service` commands gracefully degrade in open-source version
+
+### Changed
+- Pro feature imports use graceful fallback with installation instructions
+
 ## [1.0.0] - 2026-06-15
 
 ### Added

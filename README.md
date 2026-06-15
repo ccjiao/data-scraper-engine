@@ -6,6 +6,7 @@
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![CI](https://github.com/ccjiao/data-scraper-engine/actions/workflows/ci.yml/badge.svg)](https://github.com/ccjiao/data-scraper-engine/actions/workflows/ci.yml)
 [![GitHub Stars](https://img.shields.io/github/stars/ccjiao/data-scraper-engine?style=social)](https://github.com/ccjiao/data-scraper-engine)
 
 A **URL-driven intelligent data scraping engine** that automatically identifies link types, scrapes data, and outputs structured results. Zero config, one command, full pipeline.
@@ -174,6 +175,29 @@ The open-source engine covers all core scraping functionality. **Pro features** 
 
 ```bash
 pip install datapilot-pro
+```
+
+After installing, Pro features automatically integrate into the CLI:
+
+```bash
+# Sentiment analysis + user profiling
+python scripts/scraper.py scrape "https://live.douyin.com/379595210124" --analyze --duration 300
+
+# REST API server
+python scripts/scraper.py serve --port 9898
+
+# douyinLive Go service management
+python scripts/scraper.py service start
+```
+
+Or use in Python:
+
+```python
+from datapilot_pro.analyzers import SentimentAnalyzer, UserProfileAnalyzer
+
+analyzer = SentimentAnalyzer()
+result = analyzer.analyze("这个产品质量好！")
+# → {"sentiment": "positive", "score": 0.75, ...}
 ```
 
 ## 🛡️ Compliance & Safety
