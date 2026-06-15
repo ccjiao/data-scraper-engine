@@ -1,0 +1,81 @@
+# 抖音直播数据采集配置
+name: 抖音直播间实时数据
+protocol: websocket
+description: 通过douyinLive服务采集抖音直播间弹幕/礼物/点赞等实时数据
+
+# WebSocket代理配置（需要先启动douyinLive服务）
+websocket:
+  server: "ws://127.0.0.1:1088"
+  room_id: ""  # 通过 --room 参数传入，如 https://live.douyin.com/379595210124 中的 379595210124
+  flush_interval: 5  # 每5秒刷新一次缓冲区
+
+# 签名配置（由douyinLive服务处理，客户端无需关心）
+sign:
+  required: true
+  provider: douyinLive
+
+# 编码类型
+encoding: protobuf+gzip
+
+# 消息类型定义
+message_types:
+  - method: WebcastChatMessage
+    label: 弹幕
+    fields: [nickname, content, user_id, user_level]
+  - method: WebcastGiftMessage
+    label: 礼物
+    fields: [nickname, gift_name, gift_count, gift_value, user_id]
+  - method: WebcastMemberMessage
+    label: 进场
+    fields: [nickname, current_count, user_id]
+  - method: WebcastLikeMessage
+    label: 点赞
+    fields: [nickname, like_count]
+  - method: WebcastSocialMessage
+    label: 关注
+    fields: [nickname, action]
+
+# 过滤配置
+filters:
+  keywords: []  # 通过 --keywords 参数传入，如 ["价格","链接","优惠"]
+
+# 输出配置
+output:
+  format: xlsx
+  columns:
+    - key: type
+      label: 消息类型
+      width: 10
+    - key: timestamp
+      label: 时间
+      width: 20
+    - key: nickname
+      label: 昵称
+      width: 16
+    - key: content
+      label: 内容
+      width: 40
+    - key: gift_name
+      label: 礼物
+      width: 12
+    - key: gift_count
+      label: 数量
+      width: 8
+    - key: gift_value
+      label: 价值
+      width: 10
+    - key: current_count
+      label: 在线人数
+      width: 10
+    - key: like_count
+      label: 点赞数
+      width: 8
+    - key: action
+      label: 动作
+      width: 8
+    - key: user_id
+      label: 用户ID
+      width: 16
+  style:
+    header_color: "FE2C55"  # 抖音红
+    even_row_color: "FFF0F3"

@@ -1,0 +1,90 @@
+# 大乐透历史开奖数据配置
+name: 超级大乐透
+protocol: http_api
+description: 中国体育彩票超级大乐透历史开奖数据
+
+endpoint: https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry
+
+headers:
+  User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  Referer: "https://www.lottery.gov.cn/kj/kjlb.html?dlt"
+  Accept: "application/json, text/javascript, */*; q=0.01"
+  X-Requested-With: XMLHttpRequest
+  Origin: "https://www.lottery.gov.cn"
+
+params:
+  gameNo: "85"
+  provinceId: "0"
+  pageSize: 30
+  isVerify: "1"
+
+pagination:
+  type: page_number
+  data_path: value.list
+  total_pages_path: value.pages
+  total_records_path: value.total
+
+request:
+  interval: 0.3
+  timeout: 30
+  retries: 3
+  retry_delay: 2
+
+output:
+  format: xlsx
+  columns:
+    - key: lotteryDrawNum
+      label: 期号
+      width: 12
+    - key: lotteryDrawTime
+      label: 开奖日期
+      width: 14
+    - key: front_numbers
+      label: 前区号码
+      width: 22
+      style: front
+    - key: back_numbers
+      label: 后区号码
+      width: 12
+      style: back
+    - key: first_prize_count
+      label: 一等奖注数
+      width: 12
+    - key: first_prize_amount
+      label: 一等奖金额
+      width: 14
+    - key: first_prize_extra_count
+      label: 一等奖追加注数
+      width: 14
+    - key: first_prize_extra_amount
+      label: 一等奖追加金额
+      width: 14
+    - key: second_prize_count
+      label: 二等奖注数
+      width: 12
+    - key: second_prize_amount
+      label: 二等奖金额
+      width: 14
+    - key: second_prize_extra_count
+      label: 二等奖追加注数
+      width: 14
+    - key: second_prize_extra_amount
+      label: 二等奖追加金额
+      width: 14
+    - key: totalSales
+      label: 销售额
+      width: 14
+    - key: poolBalanceAfterdraw
+      label: 奖池余额
+      width: 14
+  style:
+    header_color: "1A1A2E"
+    front_color: "C0392B"
+    back_color: "2471A3"
+    even_row_color: "F7F9FC"
+
+# 彩票专用：号码解析规则
+lottery:
+  front_count: 5
+  back_count: 2
+  separator: " "

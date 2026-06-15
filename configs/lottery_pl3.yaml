@@ -1,0 +1,62 @@
+# 排列3历史开奖数据配置
+name: 排列3
+protocol: http_api
+description: 中国体育彩票排列3历史开奖数据
+
+endpoint: https://webapi.sporttery.cn/gateway/lottery/getHistoryPageListV1.qry
+
+headers:
+  User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  Referer: "https://www.lottery.gov.cn/kj/kjlb.html"
+  Accept: "application/json, text/javascript, */*; q=0.01"
+  X-Requested-With: XMLHttpRequest
+  Origin: "https://www.lottery.gov.cn"
+
+params:
+  gameNo: "35"
+  provinceId: "0"
+  pageSize: 30
+  isVerify: "1"
+
+pagination:
+  type: page_number
+  data_path: value.list
+  total_pages_path: value.pages
+  total_records_path: value.total
+
+request:
+  interval: 0.3
+  timeout: 30
+  retries: 3
+  retry_delay: 2
+
+output:
+  format: xlsx
+  columns:
+    - key: lotteryDrawNum
+      label: 期号
+      width: 12
+    - key: lotteryDrawTime
+      label: 开奖日期
+      width: 14
+    - key: front_numbers
+      label: 开奖号码
+      width: 16
+      style: front
+    - key: first_prize_count
+      label: 直选注数
+      width: 12
+    - key: first_prize_amount
+      label: 直选金额
+      width: 14
+    - key: totalSales
+      label: 销售额
+      width: 14
+  style:
+    header_color: "2E7D32"
+    front_color: "2E7D32"
+
+lottery:
+  front_count: 3
+  back_count: 0
+  separator: ""

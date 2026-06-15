@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Output files
+*.xlsx
+*.csv
+*.json
+!configs/*.json
+!configs/*.yaml
+
+# Logs
+*.log
+
+# Secrets
+.env
+.env.local
+
+# Pro features (not included in open source)
+engine/analyzers/
+scripts/api_server.py
+scripts/douyinlive_service.py
