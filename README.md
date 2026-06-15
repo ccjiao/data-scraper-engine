@@ -271,5 +271,5 @@ python scripts/scraper.py scrape "https://example.com"
 ---
 
 <div align="center">
-Made with ❤️ by <a href="https://github.com/ccjiao">ccjiao</a> · 苏界网络 · 丝鹿传媒
+Made with ❤️ by <a href="https://github.com/ccjiao">ccjiao</a>
 </div>
